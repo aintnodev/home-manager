@@ -7,7 +7,10 @@
 {
   imports = with inputs; [
     # Include the results of the hardware scan.
-    ./hardware-configuration.nix
+    ./hosts/latitude-5490/hardware-configuration.nix
+
+    # Optimize settings for different hardware.
+    nixos-hardware.nixosModules.dell-latitude-5490
 
     # Other NixOS modules.
     home-manager.nixosModules.default
@@ -133,6 +136,9 @@
 
   # Enable fish shell
   programs.fish.enable = true;
+
+  # Fix uv's dynamically linked executables error
+  programs.nix-ld.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

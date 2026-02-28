@@ -26,6 +26,6 @@ mkdir -p "$DEST_DIR"
 backup "godot" "$XDG_DATA_HOME/godot"
 
 # ssh keys
-backup "ssh" "$XDG_DATA_HOME/ssh"
+backup "ssh" "$HOME/.ssh"
 
 printf "backed up all files.\n"
