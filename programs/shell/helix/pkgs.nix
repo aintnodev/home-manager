@@ -1,0 +1,27 @@
+pkgs: with pkgs; [
+  bash-language-server
+  clang-tools
+  emmet-language-server
+  google-java-format
+  gopls
+  gotools
+  harper
+  jdt-language-server
+  marksman
+  nil
+  ltex-ls-plus
+  lua-language-server
+  prettier
+  pyright
+  ruff
+  rust-analyzer
+  shfmt
+  stylua
+  svelte-language-server
+  tailwindcss-language-server
+  taplo
+  texlab
+  typescript-language-server
+  vscode-langservers-extracted
+  yaml-language-server
+]

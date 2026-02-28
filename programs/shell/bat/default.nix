@@ -1,0 +1,8 @@
+{
+  enable = true;
+  config = {
+    theme-light = "OneHalfLight";
+    theme-dark = "OneHalfDark";
+    pager = "less --RAW-CONTROL-CHARS --quit-if-one-screen --mouse";
+  };
+}

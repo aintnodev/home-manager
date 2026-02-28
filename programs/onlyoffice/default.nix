@@ -1,0 +1,8 @@
+{
+  enable = true;
+  settings = {
+    UITheme = "theme-night";
+    editorWindowMode = false;
+    titlebar = "custom";
+  };
+}

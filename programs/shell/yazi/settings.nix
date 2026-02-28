@@ -1,0 +1,92 @@
+{
+  mgr = {
+    ratio = [
+      2
+      3
+      3
+    ];
+    sort_by = "natural";
+    sort_sensitive = false;
+    sort_reverse = false;
+    sort_dir_first = true;
+    linemode = "mtime";
+    show_hidden = true;
+    show_symlink = true;
+    scrolloff = 5;
+    ignore = [ ".filen.trash.local" ];
+  };
+
+  preview = {
+    wrap = "yes";
+    tab_size = 2;
+    max_width = 1000;
+    max_height = 1000;
+    image_filter = "lanczos3";
+    image_quality = 70;
+    sixel_fraction = 15;
+    ueberzug_scale = 1;
+    ueberzug_offset = [
+      0
+      0
+      0
+      0
+    ];
+  };
+
+  opener = {
+    play = [
+      {
+        run = "totem $@";
+        orphan = true;
+        for = "unix";
+      }
+    ];
+
+    edit = [
+      {
+        run = "$EDITOR $@";
+        block = true;
+        for = "unix";
+      }
+    ];
+
+    open = [
+      {
+        run = "xdg-open $@";
+        desc = "Open";
+      }
+    ];
+  };
+
+  tasks = {
+    micro_workers = 10;
+    macro_workers = 25;
+    bizarre_retry = 5;
+    image_alloc = 536870912; # 512MiB
+    image_bound = [
+      0
+      0
+    ];
+    suppress_preload = false;
+  };
+
+  plugin = {
+    prepend_previewers = [
+      {
+        name = "*.tar*";
+        run = "piper --format=url -- tar tf $1";
+      }
+      {
+        name = "*.csv";
+        run = "piper -- bat -p --color=always $1";
+      }
+    ];
+
+    append_previewers = [
+      {
+        name = "*";
+        run = "piper -- hexyl --border=none --terminal-width=$w $1";
+      }
+    ];
+  };
+}

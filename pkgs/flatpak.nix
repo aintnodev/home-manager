@@ -1,0 +1,10 @@
+[
+  "com.github.tchx84.Flatseal"
+  "com.jeffser.Pigment"
+  "com.usebottles.bottles"
+  "eu.betterbird.Betterbird"
+  "it.mijorus.gearlever"
+  "io.github.IshuSinghSE.aurynk"
+  "io.github.dp0sk.Crosspipe"
+  "net.retrodeck.retrodeck"
+]

@@ -1,0 +1,116 @@
+[mgr]
+cwd = { fg = "blue" }
+
+hovered = { bg = "gray" }
+preview_hovered = { underline = true }
+
+find_keyword = { fg = "red", italic = true, underline = true }
+find_position = { fg = "lightred", italic = true }
+
+marker_copied = { fg = "lightgray", bg = "green" }
+marker_cut = { fg = "lightgray", bg = "red" }
+marker_marked = { fg = "lightgray", bg = "cyan" }
+marker_selected = { fg = "lightgray", bg = "lightred" }
+
+tab_active = { bg = "darkgray", fg = "blue" }
+tab_inactive = {}
+tab_width = 1
+
+count_copied = { fg = "green", bg = "darkgray" }
+count_cut = { fg = "red", bg = "darkgray" }
+count_selected = { fg = "green", bg = "darkgray" }
+
+border_symbol = "│"
+border_style = { fg = "darkgray" }
+
+[mode]
+normal_main = { fg = "white", bg = "blue", bold = true }
+normal_alt = { fg = "blue", bg = "white" }
+select_main = { fg = "white", bg = "magenta", bold = true }
+select_alt = { fg = "magenta", bg = "white" }
+unset_main = { fg = "white", bg = "blue", bold = true }
+unset_alt = { fg = "blue", bg = "white" }
+
+
+[status]
+# sep_left = { open = "", close = "" }
+# sep_right = { open = "", close = "" }
+sep_left = { open = "", close = "" }
+sep_right = { open = "", close = "" }
+overall = { fg = "blue", bg = "reset" }
+
+progress_label = { fg = "lightgray", bold = true }
+progress_normal = { fg = "green", bg = "darkgray" }
+progress_error = { fg = "red", bg = "darkgray" }
+
+perm_type = { fg = "green" }
+perm_read = { fg = "red" }
+perm_write = { fg = "lightred" }
+perm_exec = { fg = "green" }
+perm_sep = { fg = "darkgray" }
+
+
+[select]
+border = { fg = "green" }
+active = { fg = "lightred", bold = true }
+inactive = {}
+
+
+[input]
+border = { fg = "green" }
+title = {}
+value = {}
+selected = { reversed = true }
+
+
+[cmp]
+border = { fg = "green" }
+
+
+[tasks]
+border = { fg = "green" }
+title = {}
+hovered = { fg = "lightred", underline = true }
+
+
+[which]
+mask = { bg = "darkgray" }
+cand = { fg = "green" }
+rest = { fg = "lightgray" }
+desc = { fg = "lightred" }
+separator = ""
+separator_style = { fg = "lightgray" }
+
+
+[help]
+on = { fg = "green" }
+run = { fg = "lightred" }
+hovered = { reversed = true, bold = true }
+footer = { fg = "lightgray", bg = "darkgray" }
+
+
+[notify]
+title_info = { fg = "green" }
+title_warn = { fg = "red" }
+title_error = { fg = "lightred" }
+
+
+[filetype]
+rules = [
+  { mime = "image/*", fg = "lightred" },
+  { mime = "video/*", fg = "red" },
+  { mime = "audio/*", fg = "red" },
+  { mime = "application/zip", fg = "magenta" },
+  { mime = "application/x-tar", fg = "magenta" },
+  { mime = "application/x-bzip*", fg = "magenta" },
+  { mime = "application/x-bzip2", fg = "magenta" },
+  { mime = "application/x-7z-compressed", fg = "magenta" },
+  { mime = "application/x-rar", fg = "magenta" },
+  { mime = "application/x-xz", fg = "magenta" },
+  { mime = "application/doc", fg = "green" },
+  { mime = "application/pdf", fg = "green" },
+  { mime = "application/rtf", fg = "green" },
+  { mime = "application/vnd.*", fg = "green" },
+  { name = "*", fg = "darkgray" },
+  { name = "*/", fg = "blue" },
+]
