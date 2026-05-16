@@ -6,6 +6,8 @@ let
 in
 with pkgs;
 [
+  android-tools
+  distrobox
   live-server
   zjstatus
 

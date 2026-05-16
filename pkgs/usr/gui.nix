@@ -2,7 +2,6 @@
 
 let
   system = pkgs.stdenv.hostPlatform.system;
-  graphite = inputs.graphite.packages.${system}.default;
   zen-browser = inputs.zen-browser.packages.${system}.default;
 in
 with pkgs;
@@ -10,15 +9,15 @@ with pkgs;
   # ERROR
   # bottles
   # graphite
-  # krita
   # pigment
-  # gearlever
+  # recordbox
 
   # core
+  loupe
   celluloid
-  recordbox
   snapshot
   mission-center
+  gnome-disk-utility
 
   # utils
   constrict
@@ -31,14 +30,17 @@ with pkgs;
   obsidian
 
   # pwrusr
+  crosspipe
   pwvucontrol
   easyeffects
   door-knocker
+  gearlever
   millisecond
   virtualbox
+  ventoy-full
 
   # internet
-  karere
+  # karere
   telegram-desktop
   google-chrome
   zen-browser
@@ -46,16 +48,17 @@ with pkgs;
   # create
   audacity
   bitwig-studio
-  gimp
+  krita
   kdePackages.kdenlive
   obs-studio
 
   # dev
   beekeeper-studio
-  vscode
+  hoppscotch
 
   # games
   learn6502
-  gnome-mahjongg
-  gnome-chess
+  highscore
+  pcsx2
+  xemu
 ]

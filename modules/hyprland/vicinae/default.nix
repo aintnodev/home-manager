@@ -1,5 +1,5 @@
 {
   enable = true;
   useLayerShell = true;
-  systemd.autoStart = true;
+  settings = import ./settings.nix;
 }

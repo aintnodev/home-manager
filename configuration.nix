@@ -18,8 +18,13 @@
   ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    efi.canTouchEfiVariables = true;
+    systemd-boot = {
+      enable = true;
+      configurationLimit = 3;
+    };
+  };
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -38,8 +43,15 @@
   # Creates a zram block device and uses it as a swap device
   zramSwap.enable = true;
 
+  # Enable early out of memory killing.
+  services.earlyoom.enable = true;
+
   # Define your hostname.
   networking.hostName = "nixos";
+
+  # Enables NextDNS.
+  networking.nameservers = import ./modules/systemd/systemd-resolved/nameservers.nix;
+  services.resolved = import ./modules/systemd/systemd-resolved;
 
   # Enables wireless support via wpa_supplicant.
   # networking.wireless.enable = true;
@@ -84,10 +96,17 @@
   services.system76-scheduler.enable = true;
   environment.sessionVariables.COSMIC_DATA_CONTROL_ENABLED = 1;
 
+  # Enable Hyprland.
   programs.hyprland = {
     enable = true;
     withUWSM = true;
     xwayland.enable = true;
+  };
+
+  # To run rootless containers
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
   };
 
   # Configure keymap in X11.
@@ -114,7 +133,9 @@
     shell = pkgs.fish;
     extraGroups = [
       "networkmanager"
+      "podman"
       "wheel"
+      "input"
     ];
   };
 
@@ -126,9 +147,7 @@
   # Allow unfree packages
   nixpkgs.config = {
     allowUnfree = true;
-    permittedInsecurePackages = [
-      "beekeeper-studio-5.5.5"
-    ];
+    permittedInsecurePackages = import ./pkgs/insecure.nix;
   };
 
   # List packages installed in system profile.
@@ -137,8 +156,17 @@
   # Enable fish shell
   programs.fish.enable = true;
 
+  # Install the Steam package
+  # programs.steam.enable = true;
+
   # Fix uv's dynamically linked executables error
   programs.nix-ld.enable = true;
+
+  # Use appimage-run to run AppImage files
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -185,8 +213,10 @@
     backupFileExtension = "bckp";
   };
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  nix.settings = {
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+  };
 }

@@ -6,6 +6,7 @@ pkgs: with pkgs; [
   adwaita-fonts
   inter
 
+  cascadia-code
   roboto-mono
   nerd-fonts.jetbrains-mono
   nerd-fonts.roboto-mono

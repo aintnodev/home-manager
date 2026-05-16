@@ -14,7 +14,12 @@
   ################
 
   # See https://wiki.hypr.land/Configuring/Monitors/
-  monitor = ", preferred, auto, 1.33";
+  monitor = "eDP-1, preferred, auto, 1.5";
+
+  # unscale XWayland
+  xwayland = {
+    force_zero_scaling = true;
+  };
 
   ###################
   ### MY PROGRAMS ###
@@ -32,8 +37,9 @@
   # Autostart necessary processes (like notifications daemons, status bars, etc.)
   # Or execute your favorite apps at launch like this:
 
-  "exec-once" = [
-    "noctalia-shell"
+  exec-once = [
+    "waybar"
+    "battery-alert"
     "vicinae server"
   ];
 
@@ -46,6 +52,9 @@
   env = [
     "XCURSOR_SIZE,24"
     "HYPRCURSOR_SIZE,24"
+    "HYPRSHOT_DIR,$HOME/Pictures/Screenshots"
+    "QT_QPA_PLATFORM,wayland;xcb"
+    "GDK_BACKEND,wayland,x11"
   ];
 
   ###################
@@ -85,7 +94,7 @@
     # Please see https://wiki.hypr.land/Configuring/Tearing/ before you turn this on
     allow_tearing = false;
 
-    layout = "dwindle";
+    layout = "scrolling";
   };
 
   # https://wiki.hypr.land/Configuring/Variables/#decoration
@@ -109,10 +118,10 @@
 
     # https://wiki.hypr.land/Configuring/Variables/#blur
     blur = {
-      enabled = false;
-      size = 3;
-      passes = 1;
-
+      enabled = true;
+      size = 8;
+      passes = 3;
+      popups = true;
       vibrancy = 0.1696;
     };
   };
@@ -169,13 +178,15 @@
   # See https://wiki.hypr.land/Configuring/Dwindle-Layout/ for more
   dwindle = {
     pseudotile = true;
+    force_split = 2;
     preserve_split = true;
   };
 
   # See https://wiki.hypr.land/Configuring/Master-Layout/ for more
-  master = {
-    new_status = "master";
-  };
+  master.new_status = "master";
+
+  # See https://wiki.hypr.land/Configuring/Scrolling-Layout/ for more
+  scrolling.column_width = 0.7;
 
   # https://wiki.hypr.land/Configuring/Variables/#misc
   misc = {
@@ -209,6 +220,15 @@
   #   workspace_swipe = false;
   # };
 
+  gesture = [
+    "3, vertical, fullscreen"
+    "3, horizontal, workspace"
+    "4, right, dispatcher, exec, swayosd-client --brightness raise"
+    "4, left, dispatcher, exec, swayosd-client --brightness lower"
+    "4, up, dispatcher, exec, swayosd-client --output-volume raise"
+    "4, down, dispatcher, exec, swayosd-client --output-volume lower"
+  ];
+
   # Example per-device config
   # See https://wiki.hypr.land/Configuring/Keywords/#per-device-input-configs for more
   # device = {
@@ -231,20 +251,21 @@
 
   # Laptop multimedia keys for volume and LCD brightness
   bindel = [
-    ",XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
-    ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-    ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-    ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-    ",XF86MonBrightnessUp, exec, brightnessctl -e4 -n2 set 5%+"
-    ",XF86MonBrightnessDown, exec, brightnessctl -e4 -n2 set 5%-"
+    ", XF86AudioRaiseVolume, exec, swayosd-client --output-volume raise"
+    ", XF86AudioLowerVolume, exec, swayosd-client --output-volume lower"
+    ", XF86AudioMute, exec, swayosd-client --output-volume mute-toggle"
+    ", XF86AudioMicMute, exec, swayosd-client --input-volume mute-toggle"
+    ", XF86MonBrightnessUp, exec, swayosd-client --brightness raise"
+    ", XF86MonBrightnessDown, exec, swayosd-client --brightness lower"
   ];
 
   # Requires playerctl
   bindl = [
-    ", XF86AudioNext, exec, playerctl next"
-    ", XF86AudioPause, exec, playerctl play-pause"
-    ", XF86AudioPlay, exec, playerctl play-pause"
-    ", XF86AudioPrev, exec, playerctl previous"
+    ", XF86Sleep, exec, vicinae vicinae://extensions/vicinae/power"
+    ", XF86AudioNext, exec, swayosd-client --playerctl next"
+    ", XF86AudioPause, exec, swayosd-client --playerctl play-pause"
+    ", XF86AudioPlay, exec, swayosd-client --playerctl play-pause"
+    ", XF86AudioPrev, exec, swayosd-client --playerctl previous"
   ];
 
   ##############################
@@ -263,5 +284,25 @@
 
     # Fix some dragging issues with XWayland
     # "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+
+    # Dim around zentiy dialog
+    "float on, center on, match:class zenity"
+    "dim_around on, stay_focused on, match:class zenity"
+
+    # Open apps in specific workspaces
+    "match:class zen, workspace 1"
+    "match:class com.mitchellh.ghostty, workspace 2"
   ];
+
+  layerrule = [
+    "blur on, match:namespace waybar"
+    "blur on, match:namespace swayosd"
+    "blur on, match:namespace vicinae"
+    "blur on, match:namespace swaync-control-center"
+    "blur on, match:namespace swaync-notification-window"
+    "ignore_alpha 0, match:namespace swaync-control-center"
+    "ignore_alpha 0, match:namespace swaync-notification-window"
+  ];
+
+  workspace = [ "2, layout:dwindle" ];
 }

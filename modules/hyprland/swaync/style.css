@@ -1,0 +1,198 @@
+* {
+  all: unset;
+  font-family:
+    Adwaita Sans,
+    RobotoMono Nerd Font Propo;
+  font-weight: 500;
+  font-size: 14px;
+  transition: 200ms;
+}
+
+/* notifications */
+.notification-background {
+  border-radius: 4px;
+  margin: 4px;
+  background-color: rgba(27, 27, 27, 0.7);
+  color: #abb2bf;
+  padding: 0;
+}
+
+.notification-background .notification {
+  padding: 7px;
+  border-radius: 4px;
+}
+
+.notification-background .notification.critical {
+  border-left: 2px #e06c75 solid;
+}
+
+.notification .notification-content {
+  margin: 7px;
+}
+
+.notification .notification-content overlay {
+  /* icons */
+  margin: 4px;
+}
+
+.notification-content .summary {
+  font-size: 1em;
+  color: #bac2de;
+}
+
+.notification-content .time {
+  font-size: 0.8em;
+  color: #a6adc8;
+}
+
+.notification-content .body {
+  margin-top: 4px;
+  color: #abb2bf;
+}
+
+.notification > *:last-child > * {
+  min-height: 3.4em;
+}
+
+.notification-background .close-button {
+  margin: 7px;
+  padding: 2px;
+  border-radius: 2px;
+  color: rgba(27, 27, 27, 0.7);
+  background-color: #f38ba8;
+}
+
+.notification-background .close-button:hover {
+  background-color: #eba0ac;
+}
+
+.notification-background .close-button:active {
+  background-color: #f5c2e7;
+}
+
+.notification .notification-action {
+  border-radius: 2px;
+  color: #abb2bf;
+  margin: 4px;
+  padding: 8px;
+  font-size: 0.2rem; /* controls the button size not text size*/
+}
+
+.notification .notification-action {
+  background-color: rgba(63, 63, 63, 0.5);
+}
+
+.notification .notification-action:hover {
+  background-color: rgba(63, 63, 63, 0.3);
+}
+
+.notification .notification-action:active {
+  background-color: rgba(63, 63, 63, 0.7);
+}
+
+.notification.critical progress {
+  background-color: #e06c75;
+}
+
+.notification.low progress,
+.notification.normal progress {
+  background-color: #61afef;
+}
+
+.notification progress,
+.notification trough,
+.notification progressbar {
+  border-radius: 2px;
+  padding: 3px 0;
+}
+
+/* control center */
+.control-center {
+  border-radius: 4px;
+  background-color: rgba(27, 27, 27, 0.7);
+  color: #abb2bf;
+  padding: 14px;
+}
+
+.control-center .notification-background {
+  border-radius: 4px;
+  margin: 4px 0;
+}
+
+.control-center .notification-background .notification {
+  border-radius: 4px;
+  border: 1px rgba(186, 194, 222, 0.5) solid;
+}
+
+.control-center .notification-background .notification.low {
+  opacity: 0.8;
+}
+
+.control-center .widget-title > label {
+  color: #abb2bf;
+  font-size: 1.3em;
+}
+
+.control-center .widget-title button {
+  border-radius: 2px;
+  color: #abb2bf;
+  background-color: rgba(63, 63, 63, 0.5);
+  padding: 4px 8px;
+}
+
+.control-center .notification-group {
+  margin-top: 10px;
+}
+
+.control-center .notification-group:focus .notification-background {
+  background-color: rgba(27, 27, 27, 0.9);
+}
+
+/* dnd */
+.widget-dnd {
+  margin-top: 8px;
+  border-radius: 4px;
+  font-size: 1.1rem;
+}
+
+.widget-dnd > switch {
+  font-size: initial;
+  border-radius: 4px;
+  border: 1px rgba(186, 194, 222, 0.3) solid;
+  box-shadow: none;
+}
+
+.widget-dnd > switch:checked {
+  background: rgba(186, 194, 222, 0.1);
+}
+
+.widget-dnd > switch slider {
+  background: rgba(186, 194, 222, 0.3);
+  border-radius: 2px;
+}
+
+/* grid */
+.widget-buttons-grid {
+  margin-top: 1rem;
+  padding: 4px;
+  border: 1px rgba(186, 194, 222, 0.1) solid;
+}
+
+.widget-buttons-grid .text-button {
+  margin: 4px;
+  padding: 12px 50px;
+  background: rgba(63, 63, 63, 0.3);
+  border-radius: 4px;
+}
+
+.widget-buttons-grid .text-button:hover {
+  background: rgba(63, 63, 63, 0.1);
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button label {
+  font-size: 1.5rem;
+}
+
+.image {
+  padding-right: 0.5rem;
+}

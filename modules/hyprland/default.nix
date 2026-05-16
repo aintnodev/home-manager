@@ -5,12 +5,21 @@
 
   wayland.windowManager.hyprland = import ./hyprland;
 
-  services.hyprpolkitagent.enable = true;
+  home.file.".config/swayosd/style.css".source = ./swayosd/style.css;
+
+  services = {
+    hyprpolkitagent.enable = true;
+    hyprpaper = import ./hyprpaper;
+    hyprsunset = import ./hyprsunset;
+    hypridle = import ./hypridle;
+    swaync = import ./swaync;
+    swayosd = import ./swayosd;
+  };
 
   programs = {
-    noctalia-shell = import ./noctalia;
-    vicinae = import ./vicinae;
     hyprshot.enable = true;
-    hyprlock.enable = true;
+    waybar = import ./waybar;
+    vicinae = import ./vicinae;
+    hyprlock = import ./hyprlock;
   };
 }

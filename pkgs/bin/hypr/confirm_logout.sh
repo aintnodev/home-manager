@@ -40,9 +40,7 @@ zenity --question \
   --icon="$ICON" \
   --width=300
 
-res=$?
-
-if [ "$res" -eq 0 ]; then
+if [ $? -eq 0 ]; then
   sh -c "$EXEC"
 else
   NOTIFY_TEXT=$(echo "$TITLE" | awk '{print $1}')

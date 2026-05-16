@@ -11,7 +11,7 @@ export DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus"
 
 # Battery percentage at which to notify
 WARNING_LEVEL=30
-CRITICAL_LEVEL=15
+CRITICAL_LEVEL=20
 
 # Get battery information
 BAT_PATH="/sys/class/power_supply/BAT0"
@@ -33,10 +33,10 @@ CRITICAL_FILE=/tmp/batterycritical
 if [ "$BAT_DISCHARGING" -eq 1 ] && [ -f "$FULL_FILE" ]; then
   rm "$FULL_FILE"
 elif [ "$BAT_LEVEL" -gt "$CRITICAL_LEVEL" ] && [ -f "$CRITICAL_LEVEL" ]; then
-  powerprofilesctl set balanced
+  decoration-lib balanced
   rm "$CRITICAL_FILE"
 elif [ "$BAT_LEVEL" -gt "$WARNING_LEVEL" ] && [ -f "$LOW_FILE" ]; then
-  powerprofilesctl set balanced
+  decoration-lib balanced
   rm "$LOW_FILE"
 fi
 
@@ -57,7 +57,7 @@ elif [ "$BAT_LEVEL" -le "$CRITICAL_LEVEL" ] && [ "$BAT_DISCHARGING" -eq 1 ] && [
     -i "battery-empty" \
     -h int:transient:1 \
     -h string:x-canonical-private-synchronous:batteryalert
-  powerprofilesctl set power-saver
+  decoration-lib power-saver
   touch "$CRITICAL_FILE"
 
 # If the battery is low and is not charging (and has not shown notification yet)
@@ -67,6 +67,6 @@ elif [ "$BAT_LEVEL" -le "$WARNING_LEVEL" ] && [ "$BAT_DISCHARGING" -eq 1 ] && [ 
     -i "battery-caution" \
     -h int:transient:1 \
     -h string:x-canonical-private-synchronous:batteryalert
-  powerprofilesctl set balanced
+  decoration-lib balanced
   touch "$LOW_FILE"
 fi

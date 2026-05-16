@@ -21,20 +21,26 @@
   # Whether to enable wl-clip-persist, a Wayland clipboard persistence tool.
   # services.wl-clip-persist.enable = true;
 
-  # nixpkgs.overlays = [
-  #   (import ./overlays/bitwig.nix)
-  # ];
-
   # Whether to enable fontconfig configuration.
   fonts = import ./modules/home/fonts.nix;
 
   # Whether to enable management of XDG base directories.
   xdg = import ./modules/home/xdg.nix;
 
+  gtk.gtk3.bookmarks = [
+    "file:///home/ishu/Downloads"
+    "file:///home/ishu/Documents"
+    "file:///home/ishu/Music"
+    "file:///home/ishu/Pictures"
+    "file:///home/ishu/Videos"
+    "file:///home/ishu/Projects"
+  ];
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages =
     (import ./pkgs/bin { inherit pkgs; })
+    ++ (import ./pkgs/hyprland.nix { inherit pkgs; })
     ++ (import ./pkgs/usr/cli.nix { inherit pkgs; })
     ++ (import ./pkgs/usr/dev.nix { inherit pkgs inputs; })
     ++ (import ./pkgs/usr/gui.nix { inherit pkgs inputs; });
@@ -52,6 +58,8 @@
   };
 
   programs = {
+    vscode = import ./programs/vscode pkgs;
+
     ghostty = import ./programs/ghostty;
     onlyoffice = import ./programs/onlyoffice;
     vesktop = import ./programs/vesktop;
@@ -81,7 +89,10 @@
 
   # Definition of systemd per-user service units
   systemd.user = {
-    services.backup = import ./modules/systemd/backup/services.nix pkgs;
-    timers.backup = import ./modules/systemd/backup/timers.nix;
+    services.backup-archive = import ./modules/systemd/backup-archive/services.nix pkgs;
+    timers.backup-archive = import ./modules/systemd/backup-archive/timers.nix;
+
+    services.battery-alert = import ./modules/systemd/battery-alert/services.nix pkgs;
+    timers.battery-alert = import ./modules/systemd/battery-alert/timers.nix;
   };
 }

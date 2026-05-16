@@ -1,5 +1,3 @@
-{ pkgs, ... }:
-
 {
   dconf = {
     enable = true;
@@ -10,11 +8,6 @@
     enable = true;
     font.name = "Adwaita Sans";
     colorScheme = "dark";
-    cursorTheme = {
-      name = "Bibata-Modern-Ice";
-      package = pkgs.bibata-cursors;
-      size = 24;
-    };
   };
 
   qt = {

@@ -9,14 +9,32 @@
     "SUPER, P, pseudo,"
     "SUPER, T, togglesplit,"
     "SUPER, C, exec, hyprpicker -a"
-    "SUPER, SPACE, exec, vicinae close || vicinae open"
+    "SUPER, W, exec, hyprpaper-picker"
+    "SUPER, V, exec, vicinae vicinae://extensions/vicinae/clipboard/history"
+    "SUPER, PERIOD, exec, vicinae vicinae://extensions/vicinae/core/search-emojis"
+    "SUPER, COMMA, exec, vicinae vicinae://extensions/josephschmitt/gif-search/search"
+    "SUPER, SLASH, exec, vicinae vicinae://toggle"
     "SUPER, ESCAPE, exec, loginctl lock-session"
+
+    "SUPER, PRINT, exec, hyprshot -m window"
+    ", PRINT, exec, hyprshot -m output"
+    "SHIFT, PRINT, exec, hyprshot -m region"
+
+    ", Caps_Lock, exec, swayosd-client --caps-lock"
+    ", Num_Lock, exec, swayosd-client --num-lock"
+    ", Scroll_Lock, exec, swayosd-client --scroll-lock"
 
     # Move focus with SUPER + hjkl keys
     "SUPER, h, movefocus, l"
     "SUPER, l, movefocus, r"
     "SUPER, k, movefocus, u"
     "SUPER, j, movefocus, d"
+
+    # Swap windows with SUPER SHIFT + hjkl keys
+    "SUPER SHIFT, h, swapwindow, l"
+    "SUPER SHIFT, l, swapwindow, r"
+    "SUPER SHIFT, k, swapwindow, u"
+    "SUPER SHIFT, j, swapwindow, d"
 
     # Switch workspaces with SUPER + [0-9]
     "SUPER, 1, workspace, 1"

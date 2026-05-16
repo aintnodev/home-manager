@@ -18,14 +18,13 @@
 
     gi = "curl -sL https://www.gitignore.io/api/$argv";
     su = "command su --shell=/usr/bin/fish $argv";
-    ls = "eza";
-    ll = "eza -al";
     cat = "bat --style=plain --paging=never";
     tree = "eza --tree --git-ignore --all";
     wget = "wget --hsts-file=$XDG_DATA_HOME/wget-hsts";
     top = "btop --force-utf";
 
     # application aliases
+    gcc = "clang";
     se = "sudoedit";
     vs = "visudo";
     mc = "macchina";
